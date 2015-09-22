@@ -20,3 +20,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - node_modules
+  - gulpfile.js
+  - package.json
