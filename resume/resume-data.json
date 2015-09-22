@@ -1,0 +1,88 @@
+{
+    "skills" : [
+        {
+            "name" : "Javascript",
+            "category" : "Language",
+            "years" : 12,
+            "proficiency" : 7
+        },
+        {
+            "name" : "HTML",
+            "category" : "Language",
+            "years" : 12,
+            "proficiency" : 8
+        },
+        {
+            "name" : "CSS",
+            "category" : "Language",
+            "years" : 10,
+            "proficiency" : 6
+        },
+        {
+            "name" : "PHP",
+            "category" : "Language",
+            "years" : 10,
+            "proficiency" : 9
+        },
+        {
+            "name" : "SQL",
+            "category" : "Language",
+            "years" : 10.0,
+            "proficiency" : 6
+        },
+        {
+            "name" : "node.js",
+            "category" : "Framework",
+            "years" : 0.5,
+            "proficiency" : 3
+        },
+        {
+            "name" : "react.js",
+            "category" : "Framework",
+            "years" : 0.5,
+            "proficiency" : 3
+        },
+        {
+            "name" : "Laravel",
+            "category" : "Framework",
+            "years" : 4,
+            "proficiency" : 8
+        },
+        {
+            "name" : "Windows Vista",
+            "category" : "Operating System",
+            "years" : 8,
+            "proficiency" : 7
+        },
+        {
+            "name" : "Windows 7",
+            "category" : "Operating System",
+            "years" : 3,
+            "proficiency" : 7
+        },
+        {
+            "name" : "Windows 8",
+            "category" : "Operating System",
+            "years" : 2,
+            "proficiency" : 6
+        },
+        {
+            "name" : "Object-Oriented Design",
+            "category" : "Principle",
+            "years" : 12,
+            "proficiency" : 8
+        },
+        {
+            "name" : "Sarcasm",
+            "category" : "Misc",
+            "years" : 28,
+            "proficiency" : 9
+        },
+        {
+            "name" : "The Batman Voice",
+            "category" : "Misc",
+            "years" : 12,
+            "proficiency" : 5
+        }
+    ]
+}
