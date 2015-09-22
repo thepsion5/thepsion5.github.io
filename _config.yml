@@ -1,0 +1,22 @@
+# Site settings
+title: Sean Mumford
+email: sean.mumford@gmail.com
+description: > #
+  Dad, programmer, professional nerd. I've been writing code since 2000 and writing non-awful
+  code since 2005. Sometimes I even do it without people having to pay me first.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://seanmumford.com" # the base hostname & protocol for your site
+twitter_username: SMCodeMonkey
+github_username:  thepsion5
+
+# Build settings
+markdown: kramdown
+
+# Serve settings
+hostname: 0.0.0.0
+port: 4000
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

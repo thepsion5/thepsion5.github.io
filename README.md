@@ -1,0 +1,1 @@
+This is the personal website of Sean Mumford, hosted via [Github Pages](http://pages.github.com/). You can find it at [seanmumford.com](http://seanmumford.com).
