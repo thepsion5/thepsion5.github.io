@@ -1,4 +1,4 @@
-class SkillsTable extends React.component
+class SkillsTable extends React.Component
 {
 
     constructor(props)

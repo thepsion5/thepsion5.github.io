@@ -1,4 +1,6 @@
-class Resume extends React.component
+import SkillsTable from './SkillsTable.js';
+
+class Resume extends React.Component
 {
     render()
     {
@@ -8,6 +10,6 @@ class Resume extends React.component
             </div>
         );
     }
-    
+
 }
 export default Resume;

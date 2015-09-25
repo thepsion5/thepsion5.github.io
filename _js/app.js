@@ -1,15 +1,12 @@
 import Resume from './components/Resume.js';
 
 window.interactiveResume = {
-    setup: function()
+    setup: function(data, containerId)
     {
-        var data = {
-            'skills' : []
-        };
-        var containerId = 'resume-container';
+        containerId = containerId || 'resume-container';
         React.render(
-            <Resume data={data}>,
-            document.findElementById(containerId)
+            <Resume data={data} />,
+            document.getElementById(containerId)
         );
     }
 };
