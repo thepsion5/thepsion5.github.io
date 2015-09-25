@@ -8,8 +8,9 @@ class SkillsTable extends React.Component
 
     render()
     {
+        var rows = this.renderRows();
         return (
-            <table id="resume-skills">
+            <table id="resume-skills" className="table table-striped table-condensed table-hover">
                 <thead>
                     <tr>
                         <th>Skill</th>
@@ -19,7 +20,7 @@ class SkillsTable extends React.Component
                     </tr>
                 </thead>
                 <tbody>
-                    { this.renderRows() }
+                    { rows }
                 </tbody>
             </table>
         );

@@ -6,7 +6,7 @@ class Resume extends React.Component
     {
         return (
             <div class="resume">
-                <SkillsTable skills={this.skills} />
+                <SkillsTable skills={this.props.data.skills} />
             </div>
         );
     }

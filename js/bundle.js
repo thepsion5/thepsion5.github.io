@@ -8,9 +8,11 @@ var _componentsResumeJs = require('./components/Resume.js');
 var _componentsResumeJs2 = _interopRequireDefault(_componentsResumeJs);
 
 window.interactiveResume = {
-    setup: function setup(data, containerId) {
+    setup: function setup(dataLocation, containerId) {
         containerId = containerId || 'resume-container';
-        React.render(React.createElement(_componentsResumeJs2['default'], { data: data }), document.getElementById(containerId));
+        $.getJSON(dataLocation, function (data) {
+            React.render(React.createElement(_componentsResumeJs2['default'], { data: data }), document.getElementById(containerId));
+        });
     }
 };
 
@@ -38,10 +40,10 @@ var _SkillsTableJs2 = _interopRequireDefault(_SkillsTableJs);
 var Resume = (function (_React$Component) {
     _inherits(Resume, _React$Component);
 
-    function Resume() {
+    function Resume(props) {
         _classCallCheck(this, Resume);
 
-        _get(Object.getPrototypeOf(Resume.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(Resume.prototype), "constructor", this).call(this, props);
     }
 
     _createClass(Resume, [{
@@ -50,7 +52,7 @@ var Resume = (function (_React$Component) {
             return React.createElement(
                 "div",
                 { "class": "resume" },
-                React.createElement(_SkillsTableJs2["default"], { skills: this.skills })
+                React.createElement(_SkillsTableJs2["default"], { skills: this.props.data.skills })
             );
         }
     }]);
@@ -88,9 +90,10 @@ var SkillsTable = (function (_React$Component) {
     _createClass(SkillsTable, [{
         key: "render",
         value: function render() {
+            var rows = this.renderRows();
             return React.createElement(
                 "table",
-                { id: "resume-skills" },
+                { id: "resume-skills", className: "table table-striped table-condensed table-hover" },
                 React.createElement(
                     "thead",
                     null,
@@ -122,7 +125,7 @@ var SkillsTable = (function (_React$Component) {
                 React.createElement(
                     "tbody",
                     null,
-                    this.renderRows()
+                    rows
                 )
             );
         }
