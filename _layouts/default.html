@@ -13,4 +13,13 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/react.min.js"></script>
     <script src="/js/bundle.js"></script>
+    {% if page.custom_js %}
+        <script type="text/javascript">
+            $(function(){
+                {% for javascript in page.custom_js %}
+                    {{ page.custom_js }}
+                {% endfor %}
+            });
+        </script>
+    {% endif %}
 </html>
