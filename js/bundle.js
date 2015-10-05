@@ -127,43 +127,15 @@ var SkillsTable = (function (_React$Component) {
             var rows = this.renderRows();
             return React.createElement(
                 "div",
-                { id: "skills-wrapper", className: "col-sm-6" },
+                { className: "col-sm-6" },
                 React.createElement(
                     "div",
-                    { className: "btn-group", onClick: this.updateVisibleCategories },
+                    { id: "resume-skills-control", className: "btn-group", onClick: this.updateVisibleCategories },
                     controls
                 ),
                 React.createElement(
                     "table",
-                    { id: "resume-skills", className: "table table-striped table-condensed table-hover table-bordered" },
-                    React.createElement(
-                        "thead",
-                        null,
-                        React.createElement(
-                            "tr",
-                            null,
-                            React.createElement(
-                                "th",
-                                null,
-                                "Skill"
-                            ),
-                            React.createElement(
-                                "th",
-                                null,
-                                "Category"
-                            ),
-                            React.createElement(
-                                "th",
-                                null,
-                                "Years Exp."
-                            ),
-                            React.createElement(
-                                "th",
-                                null,
-                                "Expertise"
-                            )
-                        )
-                    ),
+                    { id: "resume-skills", className: "table table-condensed" },
                     React.createElement(
                         "tbody",
                         null,
@@ -189,35 +161,63 @@ var SkillsTable = (function (_React$Component) {
     }, {
         key: "renderRows",
         value: function renderRows() {
-            var categories = this.state.categories;
-            return this.props.skills.filter(function (skillset) {
-                return categories.get(skillset.category);
-            }).map(function (skillset) {
-                return React.createElement(
+            var previousCategory = '',
+                isNewCategory = false;
+            return this.getVisibleSkillsets().map(function (skillset) {
+                var rows = [];
+                isNewCategory = previousCategory != skillset.category;
+                if (isNewCategory) {
+                    rows.push(React.createElement(
+                        "tr",
+                        { className: "category-border" },
+                        React.createElement(
+                            "th",
+                            { colSpan: "2" },
+                            skillset.category
+                        )
+                    ));
+                }
+                rows.push(React.createElement(
                     "tr",
                     null,
                     React.createElement(
                         "th",
                         null,
-                        skillset.skill
+                        skillset.skill,
+                        " ",
+                        React.createElement(
+                            "small",
+                            null,
+                            "(",
+                            skillset.years,
+                            " years)"
+                        )
                     ),
                     React.createElement(
                         "td",
-                        null,
-                        skillset.category
-                    ),
-                    React.createElement(
-                        "td",
-                        null,
-                        skillset.years
-                    ),
-                    React.createElement(
-                        "td",
-                        null,
-                        skillset.proficiency,
-                        "/10"
+                        { className: "proficiency-cell" },
+                        React.createElement(
+                            "span",
+                            { className: "proficiency-filled" },
+                            String.fromCharCode(8226).repeat(skillset.proficiency)
+                        ),
+                        React.createElement(
+                            "span",
+                            { className: "proficiency-empty" },
+                            String.fromCharCode(8226).repeat(8 - skillset.proficiency)
+                        )
                     )
-                );
+                ));
+                previousCategory = skillset.category;
+                return rows;
+            });
+        }
+    }, {
+        key: "getVisibleSkillsets",
+        value: function getVisibleSkillsets() {
+            var categories = this.state.categories;
+            return this.props.skills.filter(function (skillset) {
+                return categories.get(skillset.category);
             });
         }
     }]);

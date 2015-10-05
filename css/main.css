@@ -2,6 +2,34 @@ body {
     padding: 40px;
 }
 
-#skills-wrapper .btn-group {
+#resume-skills-control {
     margin-bottom: 10px;
+}
+
+#resume-skills th, #resume-skills td {
+    border-top: 0;
+}
+
+#resume-skills tr.category-border th {
+    background-color: #ddd;
+}
+
+#resume-skills th small {
+    font-style: italic;
+    font-weight: normal;
+}
+
+#resume-skills .proficiency-cell {
+    width: 10.5em;
+}
+
+.proficiency-filled, .proficiency-empty {
+    font-size: 48px;
+    line-height: 4px;
+    vertical-align: middle;
+    width: 13em;
+}
+
+.proficiency-empty {
+    color: #ddd;
 }

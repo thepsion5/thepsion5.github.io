@@ -43,19 +43,11 @@ class SkillsTable extends React.Component
         var controls = this.renderControls();
         var rows = this.renderRows();
         return (
-            <div id="skills-wrapper" className="col-sm-6">
-                <div className="btn-group" onClick={this.updateVisibleCategories}>
+            <div className="col-sm-6">
+                <div id="resume-skills-control" className="btn-group" onClick={this.updateVisibleCategories}>
                     {controls}
                 </div>
-                <table id="resume-skills" className="table table-striped table-condensed table-hover table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Skill</th>
-                            <th>Category</th>
-                            <th>Years Exp.</th>
-                            <th>Expertise</th>
-                        </tr>
-                    </thead>
+                <table id="resume-skills" className="table table-condensed">
                     <tbody>
                         {rows}
                     </tbody>
@@ -78,18 +70,36 @@ class SkillsTable extends React.Component
 
     renderRows()
     {
+        var previousCategory = '', isNewCategory = false;
+        return this.getVisibleSkillsets().map(function(skillset) {
+            var rows = [];
+            isNewCategory = (previousCategory != skillset.category);
+            if(isNewCategory) {
+                rows.push(
+                    <tr className="category-border">
+                        <th colSpan="2">{skillset.category}</th>
+                    </tr>
+                );
+            }
+            rows.push(
+                <tr>
+                    <th>{skillset.skill} <small>({skillset.years} years)</small></th>
+                    <td className="proficiency-cell">
+                        <span className="proficiency-filled">{String.fromCharCode(8226).repeat(skillset.proficiency)}</span>
+                        <span className="proficiency-empty">{String.fromCharCode(8226).repeat(8-skillset.proficiency)}</span>
+                    </td>
+                </tr>
+            );
+            previousCategory = skillset.category;
+            return rows;
+        });
+    }
+
+    getVisibleSkillsets()
+    {
         var categories = this.state.categories;
         return this.props.skills.filter(function(skillset) {
             return categories.get(skillset.category);
-        }).map(function(skillset) {
-            return (
-                <tr>
-                    <th>{skillset.skill}</th>
-                    <td>{skillset.category}</td>
-                    <td>{skillset.years}</td>
-                    <td>{skillset.proficiency}/10</td>
-                </tr>
-            );
         });
     }
 }
