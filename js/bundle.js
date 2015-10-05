@@ -41,10 +41,10 @@ var _SkillsTableJs2 = _interopRequireDefault(_SkillsTableJs);
 var Resume = (function (_React$Component) {
     _inherits(Resume, _React$Component);
 
-    function Resume(props) {
+    function Resume() {
         _classCallCheck(this, Resume);
 
-        _get(Object.getPrototypeOf(Resume.prototype), "constructor", this).call(this, props);
+        _get(Object.getPrototypeOf(Resume.prototype), "constructor", this).apply(this, arguments);
     }
 
     _createClass(Resume, [{
@@ -86,54 +86,113 @@ var SkillsTable = (function (_React$Component) {
         _classCallCheck(this, SkillsTable);
 
         _get(Object.getPrototypeOf(SkillsTable.prototype), "constructor", this).call(this, props);
+        this.state = {
+            "categories": this.getCategories()
+        };
+        this.updateVisibleCategories = this.updateVisibleCategories.bind(this);
     }
 
     _createClass(SkillsTable, [{
+        key: "getCategories",
+        value: function getCategories() {
+            return this.props.skills.reduce(function (categoriesMap, skillset) {
+                categoriesMap.set(skillset.category, true);
+                return categoriesMap;
+            }, new Map());
+        }
+    }, {
+        key: "getVisibleCategories",
+        value: function getVisibleCategories() {
+            var visibleCategories = [];
+            this.state.categories.forEach(function (isVisible, category) {
+                if (isVisible) {
+                    visibleCategories.push(category);
+                }
+            });
+            return visibleCategories;
+        }
+    }, {
+        key: "updateVisibleCategories",
+        value: function updateVisibleCategories(event) {
+            var newState = !this.state.categories.get(event.target.value);
+            this.state.categories.set(event.target.value, newState);
+            this.setState({
+                'categories': this.state.categories
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
+            var controls = this.renderControls();
             var rows = this.renderRows();
             return React.createElement(
-                "table",
-                { id: "resume-skills", className: "table table-striped table-condensed table-hover" },
+                "div",
+                { id: "skills-wrapper" },
                 React.createElement(
-                    "thead",
-                    null,
-                    React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                            "th",
-                            null,
-                            "Skill"
-                        ),
-                        React.createElement(
-                            "th",
-                            null,
-                            "Category"
-                        ),
-                        React.createElement(
-                            "th",
-                            null,
-                            "Years Exp."
-                        ),
-                        React.createElement(
-                            "th",
-                            null,
-                            "Expertise"
-                        )
-                    )
+                    "div",
+                    { className: "btn-group", onClick: this.updateVisibleCategories },
+                    controls
                 ),
                 React.createElement(
-                    "tbody",
-                    null,
-                    rows
+                    "table",
+                    { id: "resume-skills", className: "table table-striped table-condensed table-hover table-bordered" },
+                    React.createElement(
+                        "thead",
+                        null,
+                        React.createElement(
+                            "tr",
+                            null,
+                            React.createElement(
+                                "th",
+                                null,
+                                "Skill"
+                            ),
+                            React.createElement(
+                                "th",
+                                null,
+                                "Category"
+                            ),
+                            React.createElement(
+                                "th",
+                                null,
+                                "Years Exp."
+                            ),
+                            React.createElement(
+                                "th",
+                                null,
+                                "Expertise"
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        "tbody",
+                        null,
+                        rows
+                    )
                 )
             );
         }
     }, {
+        key: "renderControls",
+        value: function renderControls() {
+            var controls = [];
+            this.state.categories.forEach(function (isVisible, category) {
+                var activeClass = isVisible ? 'active' : '';
+                controls.push(React.createElement(
+                    "button",
+                    { className: 'btn btn-default ' + activeClass, value: category },
+                    category
+                ));
+            });
+            return controls;
+        }
+    }, {
         key: "renderRows",
         value: function renderRows() {
-            return this.props.skills.map(function (skillset) {
+            var categories = this.state.categories;
+            return this.props.skills.filter(function (skillset) {
+                return categories.get(skillset.category);
+            }).map(function (skillset) {
                 return React.createElement(
                     "tr",
                     null,
