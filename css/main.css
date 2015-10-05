@@ -1,3 +1,7 @@
 body {
     padding: 40px;
 }
+
+#skills-wrapper .btn-group {
+    margin-bottom: 10px;
+}

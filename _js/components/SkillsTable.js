@@ -43,7 +43,7 @@ class SkillsTable extends React.Component
         var controls = this.renderControls();
         var rows = this.renderRows();
         return (
-            <div id="skills-wrapper">
+            <div id="skills-wrapper" className="col-sm-6">
                 <div className="btn-group" onClick={this.updateVisibleCategories}>
                     {controls}
                 </div>

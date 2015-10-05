@@ -52,7 +52,7 @@ var Resume = (function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                { "class": "resume" },
+                { className: "row" },
                 React.createElement(_SkillsTableJs2["default"], { skills: this.props.data.skills })
             );
         }
@@ -127,7 +127,7 @@ var SkillsTable = (function (_React$Component) {
             var rows = this.renderRows();
             return React.createElement(
                 "div",
-                { id: "skills-wrapper" },
+                { id: "skills-wrapper", className: "col-sm-6" },
                 React.createElement(
                     "div",
                     { className: "btn-group", onClick: this.updateVisibleCategories },
