@@ -103,10 +103,16 @@
             "proficiency" : 5
         },
         {
-            "skill" : "Model-view-controller Frameworks",
+            "skill" : "MVC Frameworks",
             "category" : "Principle",
             "years" : 8,
             "proficiency" : 8
+        },
+        {
+            "skill" : "Domain-Driven Design",
+            "category" : "Principle",
+            "years" : 4,
+            "proficiency" : 5
         },
         {
             "skill" : "Sarcasm",
