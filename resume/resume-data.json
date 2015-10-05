@@ -73,6 +73,24 @@
             "proficiency" : 6
         },
         {
+            "skill" : "Microsoft Word",
+            "category" : "Software",
+            "proficiency" : 5,
+            "years" : 12
+        },
+        {
+            "skill" : "Microsoft Excel",
+            "category" : "Software",
+            "proficiency" : 7,
+            "years" : 12
+        },
+        {
+            "skill" : "Git Version Control",
+            "category" : "Software",
+            "proficiency" : 7,
+            "years" : 5
+        },
+        {
             "skill" : "Object-Oriented Design",
             "category" : "Principle",
             "years" : 12,
