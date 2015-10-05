@@ -7,9 +7,10 @@ var _componentsResumeJs = require('./components/Resume.js');
 
 var _componentsResumeJs2 = _interopRequireDefault(_componentsResumeJs);
 
-window.interactiveResume = {
-    setup: function setup(dataLocation, containerId) {
-        containerId = containerId || 'resume-container';
+window.InteractiveResume = {
+    setup: function setup(dataLocation) {
+        var containerId = arguments.length <= 1 || arguments[1] === undefined ? 'resume-container' : arguments[1];
+
         $.getJSON(dataLocation, function (data) {
             React.render(React.createElement(_componentsResumeJs2['default'], { data: data }), document.getElementById(containerId));
         });

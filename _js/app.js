@@ -1,9 +1,8 @@
 import Resume from './components/Resume.js';
 
 window.InteractiveResume = {
-    setup: function(dataLocation, containerId)
+    setup: function(dataLocation, containerId = 'resume-container')
     {
-        containerId = containerId || 'resume-container';
         $.getJSON(dataLocation, function(data)
         {
             React.render(
