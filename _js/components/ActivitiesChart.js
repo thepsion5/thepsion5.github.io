@@ -53,7 +53,7 @@ class ActivitiesChart extends React.Component
         return (
             <div className="col-sm-6">
                 <h3>My Average Day</h3>
-                <div id="activities-chart" />
+                <div id="activities-chart">Visualize this chart mentally until I actually do it.</div>
             </div>
         );
     }
