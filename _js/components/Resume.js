@@ -1,4 +1,5 @@
 import SkillsTable from './SkillsTable.js';
+import ActivitiesChart from './ActivitiesChart.js';
 
 class Resume extends React.Component
 {
@@ -6,6 +7,7 @@ class Resume extends React.Component
     {
         return (
             <div className="row">
+                <ActivitiesChart activities={this.props.data.activities} />
                 <SkillsTable skills={this.props.data.skills} />
             </div>
         );

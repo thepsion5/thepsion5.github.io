@@ -17,26 +17,127 @@ window.InteractiveResume = {
     }
 };
 
-},{"./components/Resume.js":2}],2:[function(require,module,exports){
-"use strict";
+},{"./components/Resume.js":3}],2:[function(require,module,exports){
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(exports, '__esModule', {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var ActivitiesChart = (function (_React$Component) {
+    _inherits(ActivitiesChart, _React$Component);
+
+    function ActivitiesChart(props) {
+        _classCallCheck(this, ActivitiesChart);
+
+        _get(Object.getPrototypeOf(ActivitiesChart.prototype), 'constructor', this).call(this, props);
+        this.state = {};
+    }
+
+    _createClass(ActivitiesChart, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.initializeChart();
+        }
+    }, {
+        key: 'initializeChart',
+        value: function initializeChart() {
+            console.log(this.props);
+            var $container = $(this.props.container);
+            var containerHeight = parseInt($container.css('height')),
+                containerWidth = parseInt($container.css('width')),
+                radius = Math.min(containerWidth, containerHeight) / 3,
+                backgroundColor = this.props.background_color,
+                data = this.generateChartData();
+            //TODO: Actually generate the chart here
+        }
+    }, {
+        key: 'generateChartData',
+        value: function generateChartData() {
+            var chartData = {
+                "values": [],
+                "labels": [],
+                "colors": []
+            };
+
+            this.props.activities.forEach(function (activity) {
+                chartData.values.push(activity.hours);
+                chartData.labels.push(activity.activity);
+                var color = '';
+                switch (activity.category) {
+                    case 'professional':
+                        color = "#99F";break;
+                    case 'personal':
+                        color = "#F99";break;
+                    case 'sleep':
+                        color = "#9F9";break;
+                }
+                chartData.colors.push(color);
+            });
+            return chartData;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'col-sm-6' },
+                React.createElement(
+                    'h3',
+                    null,
+                    'My Average Day'
+                ),
+                React.createElement('div', { id: 'activities-chart' })
+            );
+        }
+    }]);
+
+    return ActivitiesChart;
+})(React.Component);
+
+ActivitiesChart.defaultProps = {
+    "activities": [],
+    "container": "#activities-chart",
+    "donut_size": 0.5,
+    "background_color": "#FFF",
+    "colors": ["#AAF", "#AFF", "#FAA"]
+};
+
+exports['default'] = ActivitiesChart;
+module.exports = exports['default'];
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _SkillsTableJs = require('./SkillsTable.js');
 
 var _SkillsTableJs2 = _interopRequireDefault(_SkillsTableJs);
+
+var _ActivitiesChartJs = require('./ActivitiesChart.js');
+
+var _ActivitiesChartJs2 = _interopRequireDefault(_ActivitiesChartJs);
 
 var Resume = (function (_React$Component) {
     _inherits(Resume, _React$Component);
@@ -44,16 +145,17 @@ var Resume = (function (_React$Component) {
     function Resume() {
         _classCallCheck(this, Resume);
 
-        _get(Object.getPrototypeOf(Resume.prototype), "constructor", this).apply(this, arguments);
+        _get(Object.getPrototypeOf(Resume.prototype), 'constructor', this).apply(this, arguments);
     }
 
     _createClass(Resume, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
-                { className: "row" },
-                React.createElement(_SkillsTableJs2["default"], { skills: this.props.data.skills })
+                'div',
+                { className: 'row' },
+                React.createElement(_ActivitiesChartJs2['default'], { activities: this.props.data.activities }),
+                React.createElement(_SkillsTableJs2['default'], { skills: this.props.data.skills })
             );
         }
     }]);
@@ -61,10 +163,10 @@ var Resume = (function (_React$Component) {
     return Resume;
 })(React.Component);
 
-exports["default"] = Resume;
-module.exports = exports["default"];
+exports['default'] = Resume;
+module.exports = exports['default'];
 
-},{"./SkillsTable.js":3}],3:[function(require,module,exports){
+},{"./ActivitiesChart.js":2,"./SkillsTable.js":4}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
