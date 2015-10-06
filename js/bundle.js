@@ -129,6 +129,11 @@ var SkillsTable = (function (_React$Component) {
                 "div",
                 { className: "col-sm-6" },
                 React.createElement(
+                    "h2",
+                    null,
+                    "Skills"
+                ),
+                React.createElement(
                     "div",
                     { id: "resume-skills-control", className: "btn-group", onClick: this.updateVisibleCategories },
                     controls

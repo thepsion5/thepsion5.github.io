@@ -2,6 +2,19 @@ body {
     padding: 40px;
 }
 
+#resume-container h2, #resume-container h3 {
+    color: #900;
+    font-weight: bold;
+}
+
+#resume-container h2 {
+    font-size: 1.6em;
+}
+
+#resume-container h3 {
+    font-size: 1.3em;
+}
+
 #resume-skills-control {
     margin-bottom: 10px;
 }
@@ -11,7 +24,9 @@ body {
 }
 
 #resume-skills tr.category-border th {
-    background-color: #ddd;
+    border-bottom: 2px solid #ddd;
+    color: #900;
+    font-size: 1.3em;
 }
 
 #resume-skills th small {
@@ -32,4 +47,8 @@ body {
 
 .proficiency-empty {
     color: #ddd;
+}
+
+.proficiency-filled {
+    color: #900;
 }
