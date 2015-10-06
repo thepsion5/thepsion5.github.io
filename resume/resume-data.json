@@ -126,5 +126,62 @@
             "years" : 12,
             "proficiency" : 4
         }
+    ],
+    "activities" : [
+        {
+            "category" : "professional",
+            "activity" : "Frontend Development",
+            "hours" : 1.5
+        },
+        {
+            "category" : "professional",
+            "activity" : "Backend Development",
+            "hours" : 6
+        },
+        {
+            "category" : "professional",
+            "activity" : "Professional Development",
+            "hours" : 0.5
+        },
+        {
+            "category" : "personal",
+            "activity" : "In Transit",
+            "hours" : 1
+        },
+        {
+            "category" : "personal",
+            "activity" : "Toddler Management",
+            "hours" : 3.5
+        },
+        {
+            "category" : "personal",
+            "activity" : "Nerdy Fandoms",
+            "hours" : 2
+        },
+        {
+            "category" : "personal",
+            "activity" : "Videogames",
+            "hours" : 1
+        },
+        {
+            "category" : "personal",
+            "activity" : "Thinking about Space",
+            "hours" : 1
+        },
+        {
+            "category" : "personal",
+            "activity" : "Reading",
+            "hours" : 0.5
+        },
+        {
+            "category" : "sleep",
+            "activity" : "Actually Sleeping",
+            "hours" : 6
+        },
+        {
+            "category" : "sleep",
+            "activity" : "Nocturnal Assaults by Toddler",
+            "hours" : 1
+        }
     ]
 }
