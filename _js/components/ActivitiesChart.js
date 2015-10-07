@@ -34,15 +34,11 @@ class ActivitiesChart extends React.Component
             "colors" : []
         };
 
+        var colorsByCategory = this.props.label_colors;
         this.props.activities.forEach(function(activity) {
             chartData.values.push(activity.hours);
             chartData.labels.push(activity.activity);
-            var color = '';
-            switch(activity.category) {
-                case 'professional': color = "#99F"; break;
-                case 'personal' : color = "#F99"; break;
-                case 'sleep' : color = "#9F9"; break;
-            }
+            let color = (colorsByCategory[activity.category]) ? colorsByCategory[activity.category] : colorsByCategory.default;
             chartData.colors.push(color);
         });
         return chartData;
@@ -64,7 +60,13 @@ ActivitiesChart.defaultProps = {
     "container" : "#activities-chart",
     "donut_size" : 0.5,
     "background_color" : "#FFF",
-    "colors" : ["#AAF", "#AFF", "#FAA"]
+    "stroke_color" : "#000",
+    "label_colors" : {
+        "professional" : "#FAA",
+        "personal" : "#AAF",
+        "sleep" : "#AFA",
+        "default" : "#AAA"
+    }
 };
 
 export default ActivitiesChart
