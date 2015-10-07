@@ -94,11 +94,12 @@
                 total += values[i];
                 values[i] = { value: values[i], order: i, valueOf: function () { return this.value; } };
             }
-            
+
+            //TODO: Fork library to allow custom sorting instead of just hacking it
             //values are sorted numerically
-            values.sort(function (a, b) {
-                return b.value - a.value;
-            });
+            //values.sort(function (a, b) {
+            //    return b.value - a.value;
+            //});
             
             for (i = 0; i < len; i++) {
                 if (defcut && values[i] * 100 / total < minPercent) {
