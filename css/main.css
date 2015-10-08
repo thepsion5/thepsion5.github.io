@@ -13,6 +13,7 @@ body {
 
 #resume-container h3 {
     font-size: 1.3em;
+    text-transform: capitalize;
 }
 
 #resume-skills-control {
