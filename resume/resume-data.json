@@ -165,23 +165,23 @@
         },
         {
             "category" : "personal",
-            "activity" : "Thinking about Space",
-            "hours" : 1
-        },
-        {
-            "category" : "personal",
             "activity" : "Reading",
             "hours" : 0.5
         },
         {
             "category" : "sleep",
-            "activity" : "Actually Sleeping",
-            "hours" : 6
+            "activity" : "Nocturnal Assaults by Toddler",
+            "hours" : 1
         },
         {
             "category" : "sleep",
-            "activity" : "Nocturnal Assaults by Toddler",
+            "activity" : "Thinking About Space",
             "hours" : 1
+        },
+        {
+            "category" : "sleep",
+            "activity" : "Actually Sleeping",
+            "hours" : 6
         }
     ]
 }
