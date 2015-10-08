@@ -53,25 +53,22 @@ class ActivitiesChart extends React.Component
         return readableValue;
     }
 
-
-
     initializeChart()
     {
         //Inspired by and borrowing heavily from: http://codepen.io/dshapira/pen/CJind
         //TODO: Re-render the chart on resize
-        var $container = $(this.props.container);
-        var backgroundColor = this.props.background_color,
+        var $container = $('#' + this.state.container_id),
+            backgroundColor = this.props.background_color,
             strokeColor = this.props.stroke_color,
-            data = this.generateChartData();
-
-        var dimensions = this.getChartDimensions($container, data);
+            data = this.state.data;
+        var dimensions = this.getChartDimensions($container);
         $container.css('height', dimensions.container.height + 'px');
         var paper = new Raphael($container[0], dimensions.container.width, dimensions.container.height);
 
         //Render the Pie Chart
         var pie = paper.piechart(dimensions.chart.x, dimensions.chart.y, dimensions.chart.radius, data.values, {
             legend: data.labels,
-            legendpos: 'south',
+            legendpos: 'east',
             legendcolor: strokeColor,
             stroke: strokeColor,
             strokewidth: 1,
@@ -111,57 +108,33 @@ class ActivitiesChart extends React.Component
             .attr({'fill': strokeColor, 'font-size': 16, "font-weight": 800, 'opacity': 0.0 });
     }
 
-    getChartDimensions($container, chartData)
+    getChartDimensions($container)
     {
-        var labelOffset = 14 * chartData.values.length;
         var baseWidth = parseInt($container.css('width'));
         return {
             'chart' : {
-                'x' : baseWidth / 2,
-                'y' : baseWidth / 2,
-                'radius' : baseWidth / 3,
-                'inner_radius' : (baseWidth / 3) * 0.6
+                'x' : baseWidth / 3,
+                'y' : baseWidth / 4,
+                'radius' : baseWidth / 5,
+                'inner_radius' : (baseWidth / 9)
             },
             'container' : {
                 'width' : baseWidth,
-                'height' : baseWidth + 10 + labelOffset
+                'height' : baseWidth / 2
             }
         };
-    }
-
-    generateChartData()
-    {
-        var chartData = {
-            "values" : [],
-            "labels" : [],
-            "colors" : []
-        };
-
-        var colorsByCategory = this.props.label_colors;
-        this.props.activities.forEach(function(activity) {
-            chartData.values.push(activity.hours);
-            chartData.labels.push(activity.activity);
-            let color = (colorsByCategory[activity.category]) ? colorsByCategory[activity.category] : colorsByCategory.default;
-            chartData.colors.push(color);
-        });
-        return chartData;
     }
 
     render()
     {
         return (
-            <div className="col-sm-6">
-                <h3>My Average Day</h3>
-                <div id="activities-chart" />
-            </div>
+            <div className="chart-container" id={this.state.container_id} />
         );
     }
 }
 
 ActivitiesChart.defaultProps = {
     "activities" : [],
-    "container" : "#activities-chart",
-    "donut_size" : 0.5,
     "background_color" : "#FFF",
     "stroke_color" : "#000",
     "label_colors" : {

@@ -39,10 +39,36 @@ var ActivitiesChart = (function (_React$Component) {
         _classCallCheck(this, ActivitiesChart);
 
         _get(Object.getPrototypeOf(ActivitiesChart.prototype), 'constructor', this).call(this, props);
-        this.state = {};
+        this.state = {
+            'container_id': this.generateChartId(),
+            'data': this.generateChartData()
+        };
     }
 
     _createClass(ActivitiesChart, [{
+        key: 'generateChartData',
+        value: function generateChartData() {
+            var chartData = {
+                "values": [],
+                "labels": [],
+                "colors": []
+            };
+
+            var colorsByCategory = this.props.label_colors;
+            this.props.activities.forEach(function (activity) {
+                chartData.values.push(activity.hours);
+                chartData.labels.push(activity.activity);
+                var color = colorsByCategory[activity.category] ? colorsByCategory[activity.category] : colorsByCategory['default'];
+                chartData.colors.push(color);
+            });
+            return chartData;
+        }
+    }, {
+        key: 'generateChartId',
+        value: function generateChartId() {
+            return 'activities_container_' + Math.floor(Math.random() * 100000 + 1);
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.initializeChart();
@@ -54,19 +80,18 @@ var ActivitiesChart = (function (_React$Component) {
         value: function initializeChart() {
             //Inspired by and borrowing heavily from: http://codepen.io/dshapira/pen/CJind
             //TODO: Re-render the chart on resize
-            var $container = $(this.props.container);
-            var backgroundColor = this.props.background_color,
+            var $container = $('#' + this.state.container_id),
+                backgroundColor = this.props.background_color,
                 strokeColor = this.props.stroke_color,
-                data = this.generateChartData();
-
-            var dimensions = this.getChartDimensions($container, data);
+                data = this.state.data;
+            var dimensions = this.getChartDimensions($container);
             $container.css('height', dimensions.container.height + 'px');
             var paper = new Raphael($container[0], dimensions.container.width, dimensions.container.height);
 
             //Render the Pie Chart
             var pie = paper.piechart(dimensions.chart.x, dimensions.chart.y, dimensions.chart.radius, data.values, {
                 legend: data.labels,
-                legendpos: 'south',
+                legendpos: 'east',
                 legendcolor: strokeColor,
                 stroke: strokeColor,
                 strokewidth: 1,
@@ -105,53 +130,25 @@ var ActivitiesChart = (function (_React$Component) {
         }
     }, {
         key: 'getChartDimensions',
-        value: function getChartDimensions($container, chartData) {
-            var labelOffset = 14 * chartData.values.length;
+        value: function getChartDimensions($container) {
             var baseWidth = parseInt($container.css('width'));
             return {
                 'chart': {
-                    'x': baseWidth / 2,
-                    'y': baseWidth / 2,
-                    'radius': baseWidth / 3,
-                    'inner_radius': baseWidth / 3 * 0.6
+                    'x': baseWidth / 3,
+                    'y': baseWidth / 4,
+                    'radius': baseWidth / 5,
+                    'inner_radius': baseWidth / 9
                 },
                 'container': {
                     'width': baseWidth,
-                    'height': baseWidth + 10 + labelOffset
+                    'height': baseWidth / 2
                 }
             };
         }
     }, {
-        key: 'generateChartData',
-        value: function generateChartData() {
-            var chartData = {
-                "values": [],
-                "labels": [],
-                "colors": []
-            };
-
-            var colorsByCategory = this.props.label_colors;
-            this.props.activities.forEach(function (activity) {
-                chartData.values.push(activity.hours);
-                chartData.labels.push(activity.activity);
-                var color = colorsByCategory[activity.category] ? colorsByCategory[activity.category] : colorsByCategory['default'];
-                chartData.colors.push(color);
-            });
-            return chartData;
-        }
-    }, {
         key: 'render',
         value: function render() {
-            return React.createElement(
-                'div',
-                { className: 'col-sm-6' },
-                React.createElement(
-                    'h3',
-                    null,
-                    'My Average Day'
-                ),
-                React.createElement('div', { id: 'activities-chart' })
-            );
+            return React.createElement('div', { className: 'chart-container', id: this.state.container_id });
         }
     }], [{
         key: 'getReadableLabel',
@@ -173,8 +170,6 @@ var ActivitiesChart = (function (_React$Component) {
 
 ActivitiesChart.defaultProps = {
     "activities": [],
-    "container": "#activities-chart",
-    "donut_size": 0.5,
     "background_color": "#FFF",
     "stroke_color": "#000",
     "label_colors": {
@@ -216,21 +211,79 @@ var _ActivitiesChartJs2 = _interopRequireDefault(_ActivitiesChartJs);
 var Resume = (function (_React$Component) {
     _inherits(Resume, _React$Component);
 
-    function Resume() {
+    function Resume(props) {
         _classCallCheck(this, Resume);
 
-        _get(Object.getPrototypeOf(Resume.prototype), 'constructor', this).apply(this, arguments);
+        console.log('about to construct');
+        _get(Object.getPrototypeOf(Resume.prototype), 'constructor', this).call(this, props);
+        console.log('constructing!');
+        this.state = {
+            'activities_by_category': this.groupActivitiesByCategory()
+        };
     }
 
     _createClass(Resume, [{
+        key: 'groupActivitiesByCategory',
+        value: function groupActivitiesByCategory() {
+            var activitiesByCategory = {};
+            this.props.data.activities.forEach(function (activity) {
+                if (activitiesByCategory[activity.category] == undefined) {
+                    activitiesByCategory[activity.category] = [];
+                }
+                activitiesByCategory[activity.category].push(activity);
+            });
+            return activitiesByCategory;
+        }
+    }, {
         key: 'render',
         value: function render() {
+            console.log('rendering!');
+            var charts = this.renderActivitiesCharts();
             return React.createElement(
                 'div',
                 { className: 'row' },
-                React.createElement(_ActivitiesChartJs2['default'], { activities: this.props.data.activities }),
-                React.createElement(_SkillsTableJs2['default'], { skills: this.props.data.skills })
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-6' },
+                    React.createElement(
+                        'h2',
+                        null,
+                        'My Average Day'
+                    ),
+                    charts
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-6' },
+                    React.createElement(
+                        'h2',
+                        null,
+                        'Skills'
+                    ),
+                    React.createElement(_SkillsTableJs2['default'], { skills: this.props.data.skills })
+                )
             );
+        }
+    }, {
+        key: 'renderActivitiesCharts',
+        value: function renderActivitiesCharts() {
+            var charts = [];
+            for (var category in this.state.activities_by_category) {
+                if (this.state.activities_by_category.hasOwnProperty(category)) {
+                    var activities = this.state.activities_by_category[category];
+                    charts.push(React.createElement(
+                        'div',
+                        null,
+                        React.createElement(
+                            'h3',
+                            null,
+                            category
+                        ),
+                        React.createElement(_ActivitiesChartJs2['default'], { activities: activities })
+                    ));
+                }
+            }
+            return charts;
         }
     }]);
 
@@ -303,12 +356,7 @@ var SkillsTable = (function (_React$Component) {
             var rows = this.renderRows();
             return React.createElement(
                 "div",
-                { className: "col-sm-6" },
-                React.createElement(
-                    "h2",
-                    null,
-                    "Skills"
-                ),
+                null,
                 React.createElement(
                     "div",
                     { id: "resume-skills-control", className: "btn-group", onClick: this.updateVisibleCategories },
