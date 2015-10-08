@@ -5,9 +5,34 @@ class ActivitiesChart extends React.Component
     {
         super(props);
         this.state = {
-
+            'container_id' : this.generateChartId(),
+            'data' : this.generateChartData()
         };
     }
+
+    generateChartData()
+    {
+        var chartData = {
+            "values" : [],
+            "labels" : [],
+            "colors" : []
+        };
+
+        var colorsByCategory = this.props.label_colors;
+        this.props.activities.forEach(function(activity) {
+            chartData.values.push(activity.hours);
+            chartData.labels.push(activity.activity);
+            let color = (colorsByCategory[activity.category]) ? colorsByCategory[activity.category] : colorsByCategory.default;
+            chartData.colors.push(color);
+        });
+        return chartData;
+    }
+
+    generateChartId()
+    {
+        return 'activities_container_' + (Math.floor((Math.random() * 100000) + 1));
+    }
+
 
     componentDidMount()
     {
