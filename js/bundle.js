@@ -214,9 +214,7 @@ var Resume = (function (_React$Component) {
     function Resume(props) {
         _classCallCheck(this, Resume);
 
-        console.log('about to construct');
         _get(Object.getPrototypeOf(Resume.prototype), 'constructor', this).call(this, props);
-        console.log('constructing!');
         this.state = {
             'activities_by_category': this.groupActivitiesByCategory()
         };
@@ -237,7 +235,6 @@ var Resume = (function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            console.log('rendering!');
             var charts = this.renderActivitiesCharts();
             return React.createElement(
                 'div',
