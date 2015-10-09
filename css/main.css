@@ -53,3 +53,7 @@ body {
 .proficiency-filled {
     color: #900;
 }
+
+.chart-container {
+    overflow: hidden;
+}

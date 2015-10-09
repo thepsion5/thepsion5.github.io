@@ -69,7 +69,7 @@ var ActivitiesChart = (function (_React$Component) {
         key: 'generateColors',
         value: function generateColors(colorCount) {
             var labelColor = Raphael.color(this.props.label_color);
-            console.log('LABEL', labelColor);
+            //interpolate
             var increments = {
                 "r": parseInt(labelColor.r / 2 / colorCount),
                 "g": parseInt(labelColor.g / 2 / colorCount),

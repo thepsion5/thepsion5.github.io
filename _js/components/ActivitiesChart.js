@@ -47,9 +47,7 @@ class ActivitiesChart extends React.Component
             colors.push('rgb('+r+','+g+','+b+')');
         }
         return colors;
-
     }
-
 
     componentDidMount()
     {
