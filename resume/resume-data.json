@@ -169,17 +169,17 @@
             "hours" : 0.5
         },
         {
-            "category" : "sleep",
+            "category" : "nocturnal",
             "activity" : "Nocturnal Assaults by Toddler",
             "hours" : 1
         },
         {
-            "category" : "sleep",
+            "category" : "nocturnal",
             "activity" : "Thinking About Space",
             "hours" : 1
         },
         {
-            "category" : "sleep",
+            "category" : "nocturnal",
             "activity" : "Actually Sleeping",
             "hours" : 6
         }
