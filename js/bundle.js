@@ -51,15 +51,12 @@ var ActivitiesChart = (function (_React$Component) {
             var chartData = {
                 "values": [],
                 "labels": [],
-                "colors": []
+                "colors": this.generateColors(this.props.activities.length)
             };
 
-            var colorsByCategory = this.props.label_colors;
             this.props.activities.forEach(function (activity) {
                 chartData.values.push(activity.hours);
                 chartData.labels.push(activity.activity);
-                var color = colorsByCategory[activity.category] ? colorsByCategory[activity.category] : colorsByCategory['default'];
-                chartData.colors.push(color);
             });
             return chartData;
         }
@@ -67,6 +64,25 @@ var ActivitiesChart = (function (_React$Component) {
         key: 'generateChartId',
         value: function generateChartId() {
             return 'activities_container_' + Math.floor(Math.random() * 100000 + 1);
+        }
+    }, {
+        key: 'generateColors',
+        value: function generateColors(colorCount) {
+            var labelColor = Raphael.color(this.props.label_color);
+            console.log('LABEL', labelColor);
+            var increments = {
+                "r": parseInt(labelColor.r / 2 / colorCount),
+                "g": parseInt(labelColor.g / 2 / colorCount),
+                "b": parseInt(labelColor.b / 2 / colorCount)
+            };
+            var colors = [];
+            for (var i = 0; i < colorCount; i++) {
+                var r = labelColor.r - increments.r * i;
+                var g = labelColor.g - increments.g * i;
+                var b = labelColor.b - increments.b * i;
+                colors.push('rgb(' + r + ',' + g + ',' + b + ')');
+            }
+            return colors;
         }
     }, {
         key: 'componentDidMount',
@@ -168,12 +184,7 @@ ActivitiesChart.defaultProps = {
     "activities": [],
     "background_color": "#FFF",
     "stroke_color": "#000",
-    "label_colors": {
-        "professional": "#FAA",
-        "personal": "#AAF",
-        "sleep": "#AFA",
-        "default": "#AAA"
-    }
+    "label_color": "#AAA"
 };
 
 exports['default'] = ActivitiesChart;
@@ -264,6 +275,7 @@ var Resume = (function (_React$Component) {
             for (var category in this.state.activities_by_category) {
                 if (this.state.activities_by_category.hasOwnProperty(category)) {
                     var activities = this.state.activities_by_category[category];
+                    var color = this.props.activity_colors[category];
                     charts.push(React.createElement(
                         'div',
                         null,
@@ -272,7 +284,7 @@ var Resume = (function (_React$Component) {
                             null,
                             category
                         ),
-                        React.createElement(_ActivitiesChartJs2['default'], { activities: activities })
+                        React.createElement(_ActivitiesChartJs2['default'], { activities: activities, label_color: color })
                     ));
                 }
             }
@@ -283,6 +295,13 @@ var Resume = (function (_React$Component) {
     return Resume;
 })(React.Component);
 
+Resume.defaultProps = {
+    'activity_colors': {
+        'professional': '#FAA',
+        'personal': '#AAF',
+        'sleep': '#AFA'
+    }
+};
 exports['default'] = Resume;
 module.exports = exports['default'];
 

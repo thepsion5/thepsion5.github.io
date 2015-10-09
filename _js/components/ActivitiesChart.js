@@ -15,15 +15,12 @@ class ActivitiesChart extends React.Component
         var chartData = {
             "values" : [],
             "labels" : [],
-            "colors" : []
+            "colors" : this.generateColors(this.props.activities.length)
         };
 
-        var colorsByCategory = this.props.label_colors;
         this.props.activities.forEach(function(activity) {
             chartData.values.push(activity.hours);
             chartData.labels.push(activity.activity);
-            let color = (colorsByCategory[activity.category]) ? colorsByCategory[activity.category] : colorsByCategory.default;
-            chartData.colors.push(color);
         });
         return chartData;
     }
@@ -31,6 +28,26 @@ class ActivitiesChart extends React.Component
     generateChartId()
     {
         return 'activities_container_' + (Math.floor((Math.random() * 100000) + 1));
+    }
+
+    generateColors(colorCount)
+    {
+        var labelColor = Raphael.color(this.props.label_color);
+        //interpolate
+        var increments = {
+            "r" : parseInt((labelColor.r/2) / colorCount),
+            "g" : parseInt((labelColor.g/2) / colorCount),
+            "b" : parseInt((labelColor.b/2) / colorCount)
+        };
+        var colors = [];
+        for(let i = 0; i < colorCount; i++) {
+            let r = labelColor.r-(increments.r*i);
+            let g = labelColor.g-(increments.g*i);
+            let b = labelColor.b-(increments.b*i);
+            colors.push('rgb('+r+','+g+','+b+')');
+        }
+        return colors;
+
     }
 
 
@@ -134,12 +151,7 @@ ActivitiesChart.defaultProps = {
     "activities" : [],
     "background_color" : "#FFF",
     "stroke_color" : "#000",
-    "label_colors" : {
-        "professional" : "#FAA",
-        "personal" : "#AAF",
-        "sleep" : "#AFA",
-        "default" : "#AAA"
-    }
+    "label_color" : "#AAA"
 };
 
 export default ActivitiesChart

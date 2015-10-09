@@ -46,10 +46,11 @@ class Resume extends React.Component
         for(var category in this.state.activities_by_category) {
             if(this.state.activities_by_category.hasOwnProperty(category)) {
                 let activities = this.state.activities_by_category[category];
+                let color = this.props.activity_colors[category];
                 charts.push(
                     <div>
                         <h3>{category}</h3>
-                        <ActivitiesChart activities={activities}/>
+                        <ActivitiesChart activities={activities} label_color={color}/>
                     </div>
                 );
             }
@@ -58,4 +59,11 @@ class Resume extends React.Component
     }
 
 }
+Resume.defaultProps = {
+    'activity_colors' : {
+        'professional' : '#FAA',
+        'personal' : '#AAF',
+        'sleep' : '#AFA'
+    }
+};
 export default Resume;
