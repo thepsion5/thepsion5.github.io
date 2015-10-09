@@ -39,8 +39,7 @@ class ActivitiesChart extends React.Component
         this.initializeChart();
     }
 
-    //TODO: Break labels into two lines when they would collide with the donut
-    static getReadableLabel(value, label)
+    static getReadableLabel(value)
     {
         var readableValue = value + ' hours';
         if(value < 1) {
@@ -48,8 +47,6 @@ class ActivitiesChart extends React.Component
         } else if(value == 1) {
             readableValue = '1 hour';
         }
-        readableValue += "\n" + label[0].textContent;
-
         return readableValue;
     }
 
@@ -85,7 +82,7 @@ class ActivitiesChart extends React.Component
                 this.label[0].attr({ r: 8.5 });
                 this.label[1].attr({ "font-weight": 800 });
                 centerLabel.stop();
-                centerLabel.attr('text', ActivitiesChart.getReadableLabel(this.value.value, this.label[1]));
+                centerLabel.attr('text', ActivitiesChart.getReadableLabel(this.value.value));
                 centerLabel.animate({ 'opacity': 1.0 }, 200);
             }
         }, function () {
