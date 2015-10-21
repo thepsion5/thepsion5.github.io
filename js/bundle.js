@@ -299,7 +299,7 @@ Resume.defaultProps = {
     'activity_colors': {
         'professional': '#FAA',
         'personal': '#AAF',
-        'sleep': '#AFA'
+        'nocturnal': '#AFA'
     }
 };
 exports['default'] = Resume;
