@@ -183,5 +183,74 @@
             "activity" : "Actually Sleeping",
             "hours" : 6
         }
+    ],
+    "experience" : [
+        {
+            "company" : "E-Site Marketing",
+            "website" : null,
+            "role" : "Web Developer/SEO Specialist",
+            "from" : "January, 2005",
+            "to" : "April, 2007",
+            "duties" : [
+                "Developed the SEO keyword database central to client Search Engine Optimization",
+                "Envisioned and implemented internal web portal used by employees to organize internal and external tools",
+                "Added new functionality to high-traffic client websites",
+                "Updated client website metadata and copy based on latest keyword research",
+                "Ensured high quality and correct functionality of all new website launches"
+            ]
+        },
+        {
+            "company" : "720 Strategies",
+            "website" : "http://720strategies.com",
+            "role" : "Web Developer",
+            "from" : "June, 2007",
+            "to" : "September, 2010",
+            "duties" : [
+                "Assisted in the development, deployment, and optimization of proprietary content management system (CMS) and constituent relationship management (CRM) tools used by Fortune 500 companies",
+                "Integrated HTML and Javascript code into Expression Engine for over 50 websites in a highly time-sensitive environment",
+                "Built first phase online payments module to process credit cart payments using the PayPal API and SDK",
+                "Evangelized use of dynamic website functionality including AJAX and jQuery while implementing solutions that degraded gracefully in older browsers",
+                "Gathered client business requirements and addressed reporting needs through complex SQL queries",
+                "Developed, tested, and launched numerous custom front-end solutions for individual client websites",
+                "Optimized website templates for high traffic volume without compromising template design or readability",
+                "Helped in the development and testing of CSS code used throughout client websites",
+                "Ensured cross-browser and Yahoo A-grade browser compliance of all website implementations",
+                "Created accessible Javascript-based solutions to replace outdated functionality on client websites",
+                "Developed a reusable Javascript library to facilitate proper website XHTML compliance on without sacrificing client-requested functionality",
+                "Provided training and support for clients on the usage of the company's Content Management System"
+            ]
+        },
+        {
+            "company" : "Symplicity",
+            "website" : "http://www.symplicity.com",
+            "role" : "Web Developer",
+            "from" : "September, 2010",
+            "to" : "June, 2011",
+            "duties" : [
+                "Implemented technique for tracking developer usage of specific components of the company's proprietary application framework",
+                "Refactored and added features to several components of a PHP-based widget library used across all clients",
+                "Replaced a dated PHP-based calendar system with a tightly-integrated Javascript Library utilizing AJAX to dynamically load and save large quantities of calendar events",
+                "Upgraded dhtmlxScheduler Javascript library as needed to fulfill additional feature requests from clients",
+                "Prototyped a web-based presentation manager system utilizing jQuery and jQuery UI's drag and drop functionality, combined with TinyMCE's WYSIWYG editor.",
+                "Assisted other developers in locating and fixing source of PHP and Javascript errors"
+            ]
+        },
+        {
+            "company" : "MCN Interactive",
+            "website" : "http://www.mcninteractive.com",
+            "role" : "Web Developer",
+            "from" : "July, 2011",
+            "to" : "July, 2013",
+            "duties" : [
+                "Refactored existing code and implemented multiple new features on the MerchMo e-commerce platform, including additional payment options, improved template management, a new discount system, and multiple new reporting features",
+                "Coordinated with frontend developers to centralize multiple templates to facilitate faster development and testing",
+                "Assisted planning and developing a tracking and payment system for student loans, including importing loan data from an external API, developing extensive reports, and using a payment gateway for users to submit payments",
+                "Implemented new features or updated existing features on several high-volume Drupal websites",
+                "Integrated multiple frameworks and development technologies across numerous projects, including CodeIgniter, Doctrine ORM, Laravel, Twig Templates, Twitter Bootstrap, and jQuery",
+                "Developed and evangelized an organized test plan for the launch of new MerchMo Stores",
+                "Oversaw and implemented Unit Testing for several key MerchMo features",
+                "Refactored a large number of unmaintained javascript files into a single, object-oriented codebase easily updated to accommodate future changes"
+            ]
+        }
     ]
 }
