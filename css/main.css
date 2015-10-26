@@ -75,6 +75,10 @@ body {
     color: #900;
 }
 
+.activities-container h3 {
+    border-bottom: 2px solid #DDD;
+}
+
 .chart-container {
     overflow: hidden;
 }

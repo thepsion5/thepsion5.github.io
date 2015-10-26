@@ -48,7 +48,7 @@ class Resume extends React.Component
                 let activities = this.state.activities_by_category[category];
                 let color = this.props.activity_colors[category];
                 charts.push(
-                    <div>
+                    <div className="activities-container">
                         <h3>{category}</h3>
                         <ActivitiesChart activities={activities} label_color={color}/>
                     </div>

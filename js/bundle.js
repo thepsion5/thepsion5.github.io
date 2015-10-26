@@ -278,7 +278,7 @@ var Resume = (function (_React$Component) {
                     var color = this.props.activity_colors[category];
                     charts.push(React.createElement(
                         'div',
-                        null,
+                        { className: 'activities-container' },
                         React.createElement(
                             'h3',
                             null,
