@@ -108,36 +108,42 @@ var ActivitiesChart = (function (_React$Component) {
                 legendpos: 'east',
                 legendcolor: strokeColor,
                 stroke: strokeColor,
-                strokewidth: 1,
+                strokewidth: 2,
                 colors: data.colors
+            });
+
+            var totalItems = pie.labels.items.length;
+            pie.labels.items.forEach(function (item) {
+                item[0].attr({ 'r': 6 });
+
+                item[1].attr({ "font-size": "14px", "font-weight": "bold" });
             });
 
             //Handle hover in and out
             pie.hover(function () {
                 this.sector.stop();
-                this.sector.scale(1.1, 1.1, this.cx, this.cy);
+                this.sector.animate({ transform: "s1.1 1.1 " + this.cx + " " + this.cy }, 200, "ease-in-out");
 
                 if (this.label) {
                     this.label[0].stop();
-                    this.label[0].attr({ r: 8.5 });
-                    this.label[1].attr({ "font-weight": 800 });
+                    this.label[0].attr({ r: 9 });
+                    this.label[1].attr({ "text-decoration": "underline" });
                     centerLabel.stop();
                     centerLabel.attr('text', ActivitiesChart.getReadableLabel(this.value.value));
-                    centerLabel.animate({ 'opacity': 1.0 }, 200);
+                    centerLabel.animate({ 'opacity': 1.0 }, 200, "ease-in-out");
                 }
             }, function () {
-                this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+                this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "ease-in-out");
                 this.sector.animate({ 'stroke': strokeColor }, 400);
                 if (this.label) {
-                    this.label[0].attr({ r: 5 });
-                    this.label[1].attr({ "font-weight": 400 });
+                    this.label[0].attr({ r: 6 });
                     centerLabel.stop();
                     centerLabel.animate({ 'opacity': 0.0 }, 500);
                 }
             });
 
             //Render the inner circle that turns the chart from Pie to Donut (delicious)
-            paper.circle(dimensions.chart.x, dimensions.chart.y, dimensions.chart.inner_radius).attr({ 'fill': backgroundColor, 'stroke': strokeColor });
+            paper.circle(dimensions.chart.x, dimensions.chart.y, dimensions.chart.inner_radius).attr({ 'fill': backgroundColor, 'stroke': strokeColor, 'stroke-width': 2 });
 
             //Render the center label
             var centerLabel = paper.text(dimensions.chart.x, dimensions.chart.y, '').attr({ 'fill': strokeColor, 'font-size': 16, "font-weight": 800, 'opacity': 0.0 });
@@ -148,7 +154,7 @@ var ActivitiesChart = (function (_React$Component) {
             var baseWidth = parseInt($container.css('width'));
             return {
                 'chart': {
-                    'x': baseWidth / 3,
+                    'x': baseWidth / 4,
                     'y': baseWidth / 4,
                     'radius': baseWidth / 5,
                     'inner_radius': baseWidth / 9
@@ -183,7 +189,7 @@ var ActivitiesChart = (function (_React$Component) {
 ActivitiesChart.defaultProps = {
     "activities": [],
     "background_color": "#FFF",
-    "stroke_color": "#000",
+    "stroke_color": "#333",
     "label_color": "#AAA"
 };
 
