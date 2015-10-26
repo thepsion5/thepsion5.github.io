@@ -370,8 +370,8 @@ var SkillsTable = (function (_React$Component) {
                 "div",
                 null,
                 React.createElement(
-                    "div",
-                    { id: "resume-skills-control", className: "btn-group", onClick: this.updateVisibleCategories },
+                    "form",
+                    { id: "resume-skills-control", onChange: this.updateVisibleCategories },
                     controls
                 ),
                 React.createElement(
@@ -390,11 +390,15 @@ var SkillsTable = (function (_React$Component) {
         value: function renderControls() {
             var controls = [];
             this.state.categories.forEach(function (isVisible, category) {
-                var activeClass = isVisible ? 'active' : '';
                 controls.push(React.createElement(
-                    "button",
-                    { className: 'btn btn-default ' + activeClass, value: category },
-                    category
+                    "span",
+                    { className: 'category-toggle ' + (isVisible ? 'enabled' : 'disabled') },
+                    React.createElement("input", { name: "categories", type: "checkbox", id: 'category-toggle-' + category, checked: isVisible ? 'checked' : '', value: category }),
+                    React.createElement(
+                        "label",
+                        { htmlFor: 'category-toggle-' + category },
+                        category
+                    )
                 ));
             });
             return controls;

@@ -20,6 +20,27 @@ body {
     margin-bottom: 10px;
 }
 
+#resume-skills-control .category-toggle {
+    margin-right: 8px;
+}
+
+#resume-skills-control .category-toggle input {
+    display:none;
+}
+
+/* TODO: Replace with non-terrible sprites */
+#resume-skills-control .category-toggle label {
+    background: url('../img/category-toggle-sprites.png') bottom left no-repeat;
+    cursor: pointer;
+    height: 20px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+#resume-skills-control .category-toggle.enabled label {
+    background: url('../img/category-toggle-sprites.png') top left no-repeat;
+}
+
 #resume-skills th, #resume-skills td {
     border-top: 0;
 }

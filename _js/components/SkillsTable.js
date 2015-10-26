@@ -44,9 +44,9 @@ class SkillsTable extends React.Component
         var rows = this.renderRows();
         return (
             <div>
-                <div id="resume-skills-control" className="btn-group" onClick={this.updateVisibleCategories}>
+                <form id="resume-skills-control" onChange={this.updateVisibleCategories}>
                     {controls}
-                </div>
+                </form>
                 <table id="resume-skills" className="table table-condensed">
                     <tbody>
                         {rows}
@@ -60,9 +60,11 @@ class SkillsTable extends React.Component
     {
         var controls = [];
         this.state.categories.forEach(function(isVisible, category) {
-            var activeClass = isVisible ? 'active' : '';
             controls.push(
-                <button className={'btn btn-default ' + activeClass} value={category}>{category}</button>
+                <span className={ 'category-toggle ' + (isVisible ? 'enabled' : 'disabled')}>
+                    <input name="categories" type="checkbox" id={ 'category-toggle-'+category} checked={ isVisible ? 'checked' : '' } value={category} />
+                    <label htmlFor={ 'category-toggle-'+category }>{category}</label>
+                </span>
             );
         });
         return controls;
