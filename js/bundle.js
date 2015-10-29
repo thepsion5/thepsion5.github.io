@@ -403,6 +403,11 @@ var SkillsTable = (function (_React$Component) {
                     React.createElement(
                         "label",
                         { htmlFor: 'category-toggle-' + category },
+                        React.createElement(
+                            "span",
+                            { className: "glyphicon glyphicon-ok-sign" },
+                            " "
+                        ),
                         category
                     )
                 ));

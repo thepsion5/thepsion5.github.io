@@ -63,7 +63,9 @@ class SkillsTable extends React.Component
             controls.push(
                 <span className={ 'category-toggle ' + (isVisible ? 'enabled' : 'disabled')}>
                     <input name="categories" type="checkbox" id={ 'category-toggle-'+category} checked={ isVisible ? 'checked' : '' } value={category} />
-                    <label htmlFor={ 'category-toggle-'+category }>{category}</label>
+                    <label htmlFor={ 'category-toggle-'+category }>
+                        <span className="glyphicon glyphicon-ok-sign"> </span>{category}
+                    </label>
                 </span>
             );
         });

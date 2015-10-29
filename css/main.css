@@ -21,6 +21,7 @@ body {
 }
 
 #resume-skills-control .category-toggle {
+    font-size: 16px;
     margin-right: 8px;
 }
 
@@ -28,17 +29,17 @@ body {
     display:none;
 }
 
-/* TODO: Replace with non-terrible sprites */
 #resume-skills-control .category-toggle label {
-    background: url('../img/category-toggle-sprites.png') bottom left no-repeat;
     cursor: pointer;
-    height: 20px;
-    padding-left: 20px;
-    vertical-align: middle;
 }
 
-#resume-skills-control .category-toggle.enabled label {
-    background: url('../img/category-toggle-sprites.png') top left no-repeat;
+#resume-skills-control .category-toggle .glyphicon {
+    color: #900;
+    padding-right: 2px;
+}
+
+#resume-skills-control .category-toggle.disabled .glyphicon {
+    color: #ddd;
 }
 
 #resume-skills th, #resume-skills td {
