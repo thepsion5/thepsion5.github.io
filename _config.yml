@@ -12,6 +12,8 @@ github_username:  thepsion5
 # Build settings
 markdown: kramdown
 
+highlighter: pygments
+
 # Serve settings
 hostname: 0.0.0.0
 port: 4000

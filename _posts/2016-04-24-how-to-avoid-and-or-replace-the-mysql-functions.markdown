@@ -50,6 +50,7 @@ The new code is written using the procedural functions, similar to the
 original mysql:
 
 {% highlight php %}
+<?php
 function incrementSiteCounter($visitorIp)
 {
     //create a new mysqli connection instance
@@ -76,6 +77,7 @@ our data and the `PDO_Statement` class provides a ton of different ways
 to collect and manage the results.
 
 {% highlight php %}
+<?php
 function incrementSiteCounter($visitorIp)
 {
     //create a new PDO instance with the correct database credentials
